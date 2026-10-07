@@ -1,0 +1,22 @@
+\section{Стандарти оформлення коду та архітектура алгоритмів}
+
+\subsection{Дотримання конвенції Oracle Code Conventions}
+
+У межах виконання лабораторної роботи особливу увагу було приділено стандартам 
+інженерного оформлення вихідного коду згідно з вимогами \textit{Oracle Code Conventions}. 
+Було опановано та застосовано на практиці такі правила:
+
+\begin{itemize}
+    \item \textbf{Угода про іменування (Naming Conventions):} 
+    Імена всіх створених компонентів та класів (\texttt{ArrayChecker}, \texttt{FizzBuzzGame}, \texttt{BalanceFinder}) 
+    записані у стилі \texttt{UpperCamelCase}. Назви методів та змінних (\texttt{isSortedUp()}, \texttt{totalSum}, \texttt{leftSum}) 
+    строго відповідають стилю \texttt{lowerCamelCase}, де перше слово обов'язково є дієсловом для методів та іменником для змінних.
+    \item \textbf{Стандартизація коментарів:} Структура кожного файлу містить три рівні документування:
+    \begin{enumerate}
+        \item \textit{Блок Copyright} у самому верху файлу із зазначенням ліцензії Apache 2.0 та автора.
+        \item \textit{JavaDoc коментарі} (\texttt{/** ... */}) перед класами та методами із 
+        застосуванням тегів \texttt{@author}, \texttt{@version}, \texttt{@param} та \texttt{@return}.
+        \item \textit{Внутрішні коментарі} (\texttt{/* ... */} та \texttt{//}) для 
+        пояснення складних ділянок бізнес-логіки з обов'язковим відступом у один порожній рядок перед ними.
+    \end{enumerate}
+\end{itemize}

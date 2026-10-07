@@ -1,0 +1,85 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+\PYG{c+cm}{/*}
+\PYG{c+cm}{ * Copyright (c) 2026 Anastasiia Gorbunova}
+\PYG{c+cm}{ * National University \PYGZdq{}Odesa Polytechnic\PYGZdq{}}
+\PYG{c+cm}{ * }
+\PYG{c+cm}{ * Licensed under the Apache License, Version 2.0 (the \PYGZdq{}License\PYGZdq{});}
+\PYG{c+cm}{ * you may not use this file except in compliance with the License.}
+\PYG{c+cm}{ * You may obtain a copy of the License at}
+\PYG{c+cm}{ *}
+\PYG{c+cm}{ *     http://apache.org}
+\PYG{c+cm}{ *}
+\PYG{c+cm}{ * Unless required by applicable law or agreed to in writing, software}
+\PYG{c+cm}{ * distributed under the License is distributed on an \PYGZdq{}AS IS\PYGZdq{} BASIS,}
+\PYG{c+cm}{ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.}
+\PYG{c+cm}{ * See the License for the specific language governing permissions and}
+\PYG{c+cm}{ * limitations under the License.}
+\PYG{c+cm}{ */}
+\PYG{k+kn}{package}\PYG{+w}{ }\PYG{n+nn}{ad251.gorbunova}\PYG{p}{;}
+
+\PYG{c+cm}{/**}
+\PYG{c+cm}{ * Клас, що реалізує логіку відомої у Британії дитячої гри FizzBuzz.}
+\PYG{c+cm}{ * Використовує формативане виведення для створення акуратної текстової сітки.}
+\PYG{c+cm}{ * }
+\PYG{c+cm}{ * @author Анастасія Горбунова}
+\PYG{c+cm}{ * @version 1.1 05 Oct 2026}
+\PYG{c+cm}{ */}
+\PYG{k+kd}{public}\PYG{+w}{ }\PYG{k+kd}{class} \PYG{n+nc}{FizzBuzzGame}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{    }\PYG{c+cm}{/** Початкове значення діапазону чисел гри */}
+\PYG{+w}{    }\PYG{k+kd}{private}\PYG{+w}{ }\PYG{k+kd}{final}\PYG{+w}{ }\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{start}\PYG{p}{;}
+\PYG{+w}{    }\PYG{c+cm}{/** Кінцеве значення діапазону чисел гри */}
+\PYG{+w}{    }\PYG{k+kd}{private}\PYG{+w}{ }\PYG{k+kd}{final}\PYG{+w}{ }\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{end}\PYG{p}{;}
+
+\PYG{+w}{    }\PYG{c+cm}{/**}
+\PYG{c+cm}{     * Конструктор для ініціалізації меж ігрового діапазону.}
+\PYG{c+cm}{     * }
+\PYG{c+cm}{     * @param start перше число діапазону}
+\PYG{c+cm}{     * @param end останнє число діапазону}
+\PYG{c+cm}{     */}
+\PYG{+w}{    }\PYG{k+kd}{public}\PYG{+w}{ }\PYG{n+nf}{FizzBuzzGame}\PYG{p}{(}\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{start}\PYG{p}{,}\PYG{+w}{ }\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{end}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{        }\PYG{k}{this}\PYG{p}{.}\PYG{n+na}{start}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{start}\PYG{p}{;}
+\PYG{+w}{        }\PYG{k}{this}\PYG{p}{.}\PYG{n+na}{end}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{end}\PYG{p}{;}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}
+
+\PYG{+w}{    }\PYG{c+cm}{/**}
+\PYG{c+cm}{     * Запускає гру та виводить результат у вигляді красивої сітки (10 стовпців).}
+\PYG{c+cm}{     * Замінює числа кратні 3 на Fizz, кратні 5 на Buzz, кратні обом — на FizzBuzz.}
+\PYG{c+cm}{     */}
+\PYG{+w}{    }\PYG{k+kd}{public}\PYG{+w}{ }\PYG{k+kt}{void}\PYG{+w}{ }\PYG{n+nf}{play}\PYG{p}{()}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{        }\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{count}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{;}\PYG{+w}{ }\PYG{c+cm}{/* Лічильник виведених елементів у поточному рядку */}
+\PYG{+w}{        }
+\PYG{+w}{        }\PYG{k}{for}\PYG{+w}{ }\PYG{p}{(}\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{i}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{start}\PYG{p}{;}\PYG{+w}{ }\PYG{n}{i}\PYG{+w}{ }\PYG{o}{\PYGZlt{}=}\PYG{+w}{ }\PYG{n}{end}\PYG{p}{;}\PYG{+w}{ }\PYG{n}{i}\PYG{o}{++}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{            }\PYG{n}{String}\PYG{+w}{ }\PYG{n}{value}\PYG{p}{;}\PYG{+w}{ }\PYG{c+cm}{/* Текстове представлення поточного кроку гри */}
+\PYG{+w}{            }
+\PYG{+w}{            }\PYG{c+cm}{/* }
+\PYG{c+cm}{             * Блок аналізу кратності числа за допомогою оператора залишку від ділення.}
+\PYG{c+cm}{             * Спочатку перевіряємо комбіновану умову кратності обом числам (3 та 5).}
+\PYG{c+cm}{             */}
+\PYG{+w}{            }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{i}\PYG{+w}{ }\PYG{o}{\PYGZpc{}}\PYG{+w}{ }\PYG{l+m+mi}{3}\PYG{+w}{ }\PYG{o}{==}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{+w}{ }\PYG{o}{\PYGZam{}\PYGZam{}}\PYG{+w}{ }\PYG{n}{i}\PYG{+w}{ }\PYG{o}{\PYGZpc{}}\PYG{+w}{ }\PYG{l+m+mi}{5}\PYG{+w}{ }\PYG{o}{==}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{                }\PYG{n}{value}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}FizzBuzz\PYGZdq{}}\PYG{p}{;}
+\PYG{+w}{            }\PYG{p}{\PYGZcb{}}\PYG{+w}{ }\PYG{k}{else}\PYG{+w}{ }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{i}\PYG{+w}{ }\PYG{o}{\PYGZpc{}}\PYG{+w}{ }\PYG{l+m+mi}{3}\PYG{+w}{ }\PYG{o}{==}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{                }\PYG{n}{value}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}Fizz\PYGZdq{}}\PYG{p}{;}
+\PYG{+w}{            }\PYG{p}{\PYGZcb{}}\PYG{+w}{ }\PYG{k}{else}\PYG{+w}{ }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{i}\PYG{+w}{ }\PYG{o}{\PYGZpc{}}\PYG{+w}{ }\PYG{l+m+mi}{5}\PYG{+w}{ }\PYG{o}{==}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{                }\PYG{n}{value}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}Buzz\PYGZdq{}}\PYG{p}{;}
+\PYG{+w}{            }\PYG{p}{\PYGZcb{}}\PYG{+w}{ }\PYG{k}{else}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{                }\PYG{n}{value}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{String}\PYG{p}{.}\PYG{n+na}{valueOf}\PYG{p}{(}\PYG{n}{i}\PYG{p}{);}
+\PYG{+w}{            }\PYG{p}{\PYGZcb{}}
+
+\PYG{+w}{            }\PYG{c+c1}{// Перед однорядковим коментарем прийнято залишати порожній рядок}
+\PYG{+w}{            }\PYG{c+c1}{// \PYGZpc{}\PYGZhy{}10s вирівнює текст по лівому краю, резервуючи під нього 10 символів}
+\PYG{+w}{            }\PYG{n}{System}\PYG{p}{.}\PYG{n+na}{out}\PYG{p}{.}\PYG{n+na}{printf}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}\PYGZpc{}\PYGZhy{}10s\PYGZdq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{value}\PYG{p}{);}
+\PYG{+w}{            }\PYG{n}{count}\PYG{o}{++}\PYG{p}{;}
+
+\PYG{+w}{            }\PYG{c+c1}{// Перевіряємо, чи заповнився поточний рядок сітки з 10 елементів}
+\PYG{+w}{            }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{count}\PYG{+w}{ }\PYG{o}{\PYGZpc{}}\PYG{+w}{ }\PYG{l+m+mi}{10}\PYG{+w}{ }\PYG{o}{==}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{                }\PYG{n}{System}\PYG{p}{.}\PYG{n+na}{out}\PYG{p}{.}\PYG{n+na}{print}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}\PYGZbs{}n\PYGZdq{}}\PYG{p}{);}
+\PYG{+w}{            }\PYG{p}{\PYGZcb{}}
+\PYG{+w}{        }\PYG{p}{\PYGZcb{}}
+\PYG{+w}{        }
+\PYG{+w}{        }\PYG{c+c1}{// Перевіряємо необхідність фінального перенесення рядка в самому кінці}
+\PYG{+w}{        }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{count}\PYG{+w}{ }\PYG{o}{\PYGZpc{}}\PYG{+w}{ }\PYG{l+m+mi}{10}\PYG{+w}{ }\PYG{o}{!=}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{            }\PYG{n}{System}\PYG{p}{.}\PYG{n+na}{out}\PYG{p}{.}\PYG{n+na}{print}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}\PYGZbs{}n\PYGZdq{}}\PYG{p}{);}
+\PYG{+w}{        }\PYG{p}{\PYGZcb{}}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}
+\PYG{p}{\PYGZcb{}}
+\end{MintedVerbatim}

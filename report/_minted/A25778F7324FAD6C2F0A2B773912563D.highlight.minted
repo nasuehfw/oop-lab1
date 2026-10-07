@@ -1,0 +1,80 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+\PYG{c+cm}{/*}
+\PYG{c+cm}{ * Copyright (c) 2026 Anastasiia Gorbunova}
+\PYG{c+cm}{ * National University \PYGZdq{}Odesa Polytechnic\PYGZdq{}}
+\PYG{c+cm}{ * }
+\PYG{c+cm}{ * Licensed under the Apache License, Version 2.0 (the \PYGZdq{}License\PYGZdq{});}
+\PYG{c+cm}{ * you may not use this file except in compliance with the License.}
+\PYG{c+cm}{ * You may obtain a copy of the License at}
+\PYG{c+cm}{ *}
+\PYG{c+cm}{ *     http://apache.org}
+\PYG{c+cm}{ *}
+\PYG{c+cm}{ * Unless required by applicable law or agreed to in writing, software}
+\PYG{c+cm}{ * distributed under the License is distributed on an \PYGZdq{}AS IS\PYGZdq{} BASIS,}
+\PYG{c+cm}{ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.}
+\PYG{c+cm}{ * See the License for the specific language governing permissions and}
+\PYG{c+cm}{ * limitations under the License.}
+\PYG{c+cm}{ */}
+\PYG{k+kn}{package}\PYG{+w}{ }\PYG{n+nn}{ad251.gorbunova}\PYG{p}{;}
+
+\PYG{c+cm}{/**}
+\PYG{c+cm}{ * Клас для обчислення та пошуку точок балансу суми елементів всередині масивів.}
+\PYG{c+cm}{ * Містить оптимізований алгоритм лінійного пошуку розділювача.}
+\PYG{c+cm}{ * }
+\PYG{c+cm}{ * @author Анастасія Горбунова}
+\PYG{c+cm}{ * @version 1.1 05 Oct 2026}
+\PYG{c+cm}{ */}
+\PYG{k+kd}{public}\PYG{+w}{ }\PYG{k+kd}{class} \PYG{n+nc}{BalanceFinder}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{    }\PYG{c+cm}{/** Масив цілих чисел для обчислення балансу частин */}
+\PYG{+w}{    }\PYG{k+kd}{private}\PYG{+w}{ }\PYG{k+kd}{final}\PYG{+w}{ }\PYG{k+kt}{int}\PYG{o}{[]}\PYG{+w}{ }\PYG{n}{array}\PYG{p}{;}
+
+\PYG{+w}{    }\PYG{c+cm}{/**}
+\PYG{c+cm}{     * Конструктор для прив\PYGZsq{}язки досліджуваного масиву до об\PYGZsq{}єкта обчислювача.}
+\PYG{c+cm}{     * }
+\PYG{c+cm}{     * @param array масив цілих чисел довжиною 2 або більше}
+\PYG{c+cm}{     */}
+\PYG{+w}{    }\PYG{k+kd}{public}\PYG{+w}{ }\PYG{n+nf}{BalanceFinder}\PYG{p}{(}\PYG{k+kt}{int}\PYG{o}{[]}\PYG{+w}{ }\PYG{n}{array}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{        }\PYG{k}{this}\PYG{p}{.}\PYG{n+na}{array}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{array}\PYG{p}{;}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}
+
+\PYG{+w}{    }\PYG{c+cm}{/**}
+\PYG{c+cm}{     * Перевіряє можливість розділення масиву на дві частини з рівною сумою чисел.}
+\PYG{c+cm}{     * Оптимізовано під складність O(N) без використання вкладених циклів.}
+\PYG{c+cm}{     * }
+\PYG{c+cm}{     * @return true, якщо масив можна збалансувати, інакше false}
+\PYG{c+cm}{     */}
+\PYG{+w}{    }\PYG{k+kd}{public}\PYG{+w}{ }\PYG{k+kt}{boolean}\PYG{+w}{ }\PYG{n+nf}{canBalance}\PYG{p}{()}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{        }\PYG{c+c1}{// Перед коментарем прийнято залишати порожній рядок}
+\PYG{+w}{        }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{array}\PYG{+w}{ }\PYG{o}{==}\PYG{+w}{ }\PYG{k+kc}{null}\PYG{+w}{ }\PYG{o}{||}\PYG{+w}{ }\PYG{n}{array}\PYG{p}{.}\PYG{n+na}{length}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{l+m+mi}{2}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{            }\PYG{k}{return}\PYG{+w}{ }\PYG{k+kc}{false}\PYG{p}{;}
+\PYG{+w}{        }\PYG{p}{\PYGZcb{}}
+
+\PYG{+w}{        }\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{totalSum}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{;}\PYG{+w}{			}\PYG{c+cm}{/* Повна сума абсолютно всіх елементів масиву */}
+\PYG{+w}{        }\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{leftSum}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{;}\PYG{+w}{			}\PYG{c+cm}{/* Накопичувана сума лівої частини при ітерації */}
+
+\PYG{+w}{        }\PYG{c+c1}{// Обчислюємо загальну суму масиву за допомогою компактного циклу foreach}
+\PYG{+w}{        }\PYG{k}{for}\PYG{+w}{ }\PYG{p}{(}\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{element}\PYG{+w}{ }\PYG{p}{:}\PYG{+w}{ }\PYG{n}{array}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{            }\PYG{n}{totalSum}\PYG{+w}{ }\PYG{o}{+=}\PYG{+w}{ }\PYG{n}{element}\PYG{p}{;}
+\PYG{+w}{        }\PYG{p}{\PYGZcb{}}
+
+\PYG{+w}{        }\PYG{c+cm}{/* }
+\PYG{c+cm}{         * Якщо загальна сума чисел непарна, її математично неможливо }
+\PYG{c+cm}{         * розділити на дві рівні цілі частини. Відразу повертаємо false.}
+\PYG{c+cm}{         */}
+\PYG{+w}{        }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{totalSum}\PYG{+w}{ }\PYG{o}{\PYGZpc{}}\PYG{+w}{ }\PYG{l+m+mi}{2}\PYG{+w}{ }\PYG{o}{!=}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{            }\PYG{k}{return}\PYG{+w}{ }\PYG{k+kc}{false}\PYG{p}{;}
+\PYG{+w}{        }\PYG{p}{\PYGZcb{}}
+
+\PYG{+w}{        }\PYG{c+c1}{// Послідовно накопичуємо ліву суму та порівнюємо її з половиною від загальної}
+\PYG{+w}{        }\PYG{k}{for}\PYG{+w}{ }\PYG{p}{(}\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{element}\PYG{+w}{ }\PYG{p}{:}\PYG{+w}{ }\PYG{n}{array}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{            }\PYG{n}{leftSum}\PYG{+w}{ }\PYG{o}{+=}\PYG{+w}{ }\PYG{n}{element}\PYG{p}{;}
+\PYG{+w}{            }
+\PYG{+w}{            }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{leftSum}\PYG{+w}{ }\PYG{o}{==}\PYG{+w}{ }\PYG{n}{totalSum}\PYG{+w}{ }\PYG{o}{/}\PYG{+w}{ }\PYG{l+m+mi}{2}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{                }\PYG{k}{return}\PYG{+w}{ }\PYG{k+kc}{true}\PYG{p}{;}\PYG{+w}{ }\PYG{c+cm}{/* Точку рівноваги (балансу) знайдено */}
+\PYG{+w}{            }\PYG{p}{\PYGZcb{}}
+\PYG{+w}{        }\PYG{p}{\PYGZcb{}}
+
+\PYG{+w}{        }\PYG{k}{return}\PYG{+w}{ }\PYG{k+kc}{false}\PYG{p}{;}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}
+\PYG{p}{\PYGZcb{}}
+\end{MintedVerbatim}
