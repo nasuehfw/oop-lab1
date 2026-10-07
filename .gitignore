@@ -10,5 +10,4 @@ bin/
 *.log
 *.toc
 *.synctex.gz
-*.pdf
 report/_minted-*
