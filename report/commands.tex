@@ -78,3 +78,24 @@
         \fontsize{10pt}{12pt}\selectfont
         \inputminted[breaklines, obeytabs, tabsize=2]{cpp}{#1}%
     }} % 🛠️ И закрывающую скобку тут
+
+%                    Java code formatting with minted
+% --------------------------------------------------------------
+
+% Команда для автоматического включения файлов Java с мелкими номерами строк и рамками
+\newcommand{\inputjava}[1]{{%
+    \usemintedstyle{vs} % Используем стиль VS, как в C++
+    \fontsize{8pt}{10pt}\selectfont % Размер шрифта самого кода
+    
+    % Локальное переопределяем размер номеров строк ТОЛЬКО внутри этой команды
+    \renewcommand\theFancyVerbLine{\color{bluegray400} \scriptsize \arabic{FancyVerbLine}}%
+    
+    \inputminted[
+        %frame=lines,      % Горизонтальные рамки сверху и снизу
+        %framesep=2mm,     % Отступ кода от рамок
+        baselinestretch=0.9,
+        linenos,          % Включаем нумерацию
+        breaklines,       % Перенос длинных строк
+        tabsize=4         % Табуляция для Java
+    ]{java}{#1}%
+}}

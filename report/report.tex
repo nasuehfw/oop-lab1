@@ -1,9 +1,10 @@
 ﻿%!TeX program = xelatex
 \documentclass{coursework}
 
-% Подключение пакетов (float для [H], minted для кода)
+% 1. Подключение пакетов (float для [H], minted для кода)
 \usepackage{float}
 \usepackage{csquotes}
+
 \usepackage{minted}
 \usepackage{listings}
 \usepackage{lipsum}
@@ -14,16 +15,9 @@
 \usepackage{fontspec}
 \setmonofont{Courier New} % задаём моноширинный шрифт
 
-\usepackage{listings}
-\lstset{
-    basicstyle=\ttfamily\footnotesize, % <--- ЗДЕСЬ УВЕЛИЧИЛИ ШРИФТ!
-    language=C++,
-    keywordstyle=\bfseries, % пример настройки ключевых слов
-    numbers=left,           % нумерация строк слева
-    numberstyle=\tiny
-}
+% 2. Затем подключаем файл с вашими кастомными командами
+\input{commands.tex} 
 
-\input{commands.tex}
 
 % Настройка библиографии Biber
 %\usepackage[backend=biber,style=gost-numeric,sorting=none]{biblatex}
